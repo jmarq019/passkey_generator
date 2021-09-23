@@ -3,11 +3,12 @@ var generateBtn = document.querySelector("#generate");
 
 //variables needed for the prompts
 var lengthOfKey = 0;
-var includeUpperCase = false;
-var includeLowerCase = false;
-var includeNums = false;
-var includeSpecialChar = false;
+var includeUpperCase = true;
+var includeLowerCase = true;
+var includeNums = true;
+var includeSpecialChar = true;
 var myNewPassKey;
+
 
     // These arrays will be filled with numbers corresponding to ASCII notation character codes 
     var uppercaseLetters = [];
@@ -24,7 +25,6 @@ var myNewPassKey;
 
 // Gets the desired length of the password.
 function askLength(){
-  var numOfChances = 0;
   var lengthInput;
   //we prompt the user for the number of characters. Default will be set to 10.
 lengthInput = window.prompt("How long do you want your passowrd to be? (must be between 8 and 128 characters, please!)", "10");
@@ -43,36 +43,9 @@ while (lengthOfKey < 8 || lengthOfKey > 128) {
 return lengthOfKey;
 }
 
-// Asks if we want caps to be included or not.
-function askUpper(){
-var wantCaps = true;
-wantCaps = window.confirm("Do you want capital letters to be included? (Y = OK; No = Cancel)");
-includeUpperCase = wantCaps;
-return includeUpperCase;
-}
+function promptUser(typeOfCharacter){
 
-// Asks if we want lower case letters to be included or not.
-function askLower(){
-  var wantLows = true;
-  wantLows = window.confirm("Do you want lower case letters to be included? (Y = OK; No = Cancel)");
-  includeLowerCase = wantLows;
-  return includeLowerCase;
-}
-
-// Asks if we want numeric characters to be included or not.
-function askNumeric(){
-var wantNums = true;
-wantNums = window.confirm("Do you want Numbers to be included? (Y = OK; No = Cancel)");
-includeNums = wantNums;
-return includeNums;
-}
-
-// Asks if we want special characters to be included or not.
-function askSpecialChar(){
-var wantSpecial = true;
-wantSpecial = window.confirm("Do you want special characters to be included? (Y = OK; No = Cancel)");
-includeSpecialChar = wantSpecial;
-return includeSpecialChar;
+return window.confirm("Do you want " + typeOfCharacter + " to be included? (Y = OK; No = Cancel)");
 }
 
 // This function will fill my character arrays
@@ -210,16 +183,16 @@ function writePassword() {
   lengthOfKey = askLength();
   console.log("Password length is " + lengthOfKey + " characters");
 
-  includeUpperCase = askUpper();
+  includeUpperCase = promptUser("Uppercase letters");
   console.log("Uppercase is " + includeUpperCase);
 
-  includeLowerCase = askLower();
+  includeLowerCase = promptUser("Lowercase letters");
   console.log("Lowercase is " + includeLowerCase);
 
-  includeNums = askNumeric();
+  includeNums = promptUser("numbers");
   console.log("Numbers is " + includeNums);
 
-  includeSpecialChar = askSpecialChar();
+  includeSpecialChar = promptUser("special characters");
   console.log("Special characters is " + includeSpecialChar);
   
   var password = generatePassword(lengthOfKey, includeUpperCase, includeLowerCase, includeNums, includeSpecialChar);
