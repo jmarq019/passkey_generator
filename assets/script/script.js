@@ -8,7 +8,7 @@ var includeLowerCase = true;
 var includeNums = true;
 var includeSpecialChar = true;
 var myNewPassKey;
-
+var randomizedArray = [];
 
     // These arrays will be filled with numbers corresponding to ASCII notation character codes 
     var uppercaseLetters = [];
@@ -81,10 +81,15 @@ if(includeSpecialChar){
   passKeyCombos = passKeyCombos.concat(specialArray);
 }
 
-console.log(passKeyCombos);
-//translates the ASCI codes and fills an array with the equivalent values
+// Randomizing the array further to ensure one of every character in the final result.
+for(var i = 0; i < passKeyCombos.length; i++) {
+randomizedArray.push(passKeyCombos[Math.floor(Math.random()*passKeyCombos.length)]);
+}
+
+
+// Translates the ASCI codes and fills an array with the equivalent values
 for (var i = 0; i < lengthOfKey; i++){
-asciiCode = passKeyCombos[Math.floor(Math.random() * passKeyCombos.length)]
+asciiCode = randomizedArray[Math.floor(Math.random() * randomizedArray.length)]
 myNewPassKeyArray.push(String.fromCharCode(asciiCode));
 }
 
