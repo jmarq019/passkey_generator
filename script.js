@@ -65,102 +65,23 @@ var asciiCode;
 var myNewPassKeyArray = [];
 var passKeyCombos = [];
 
-
-// only uppercase is confirmed
-if (includeUpperCase == true && includeLowerCase == false && includeNums == false && includeSpecialChar == false) {
-  for (var i = 0; i < uppercaseLetters.length; i++){
-    passKeyCombos.push(uppercaseLetters[i]);
-    }
-}
-// only lowercase is confirmed
-else if (includeUpperCase == false && includeLowerCase == true && includeNums == false && includeSpecialChar == false) {
-  for (var i = 0; i < lowercaseLetters.length; i++){
-    passKeyCombos.push(lowercaseLetters[i]);
-    }
-}
-//only numbers are confirmed.
-else if (includeUpperCase == false && includeLowerCase == false && includeNums == true && includeSpecialChar == false) {
-  for (var i = 0; i < numsArray.length; i++){
-    passKeyCombos.push(numsArray[i]);
-    }
-}
-//only special characters are confirmed.
-else if (includeUpperCase == false && includeLowerCase == false && includeNums == false && includeSpecialChar == true) {
-  for (var i = 0; i < specialArray.length; i++){
-    passKeyCombos.push(specialArray[i]);
-    }
-}
-//only uppercase and lowercase are confirmed.
-else if  (includeUpperCase == true && includeLowerCase == true && includeNums == false && includeSpecialChar == false) {
-  for (var i = 0; i < uppercaseLetters.length; i++){
-    passKeyCombos.push(uppercaseLetters[i]);
-    }
-    for (var i = 0; i < lowercaseLetters.length; i++){
-      passKeyCombos.push(lowercaseLetters[i]);
-      }
-}
-//lowercase,upercase and numbers are confirmed, specail characters not confirmed.
-else if (includeUpperCase == true && includeLowerCase == true && includeNums == true && includeSpecialChar == false){
-  for (var i = 0; i < uppercaseLetters.length; i++){
-    passKeyCombos.push(uppercaseLetters[i]);
-    }
-    for (var i = 0; i < lowercaseLetters.length; i++){
-      passKeyCombos.push(lowercaseLetters[i]);
-      }
-      for (var i = 0; i < numsArray.length; i++){
-        passKeyCombos.push(numsArray[i]);
-        }
-}
-// lowercase not confirmed, the rest were confirmed
-else if (includeUpperCase == true && includeLowerCase == false && includeNums == true && includeSpecialChar == true){
-  for (var i = 0; i < uppercaseLetters.length; i++){
-    passKeyCombos.push(uppercaseLetters[i]);
-    }
-    for (var i = 0; i < numsArray.length; i++){
-      passKeyCombos.push(numsArray[i]);
-      }
-      for (var i = 0; i < specialArray.length; i++){
-        passKeyCombos.push(specialArray[i]);
-        }
-}
-// uppercase not confirmed, the rest were confirmed
-else if (includeUpperCase == false && includeLowerCase == true && includeNums == true && includeSpecialChar == true){
-    for (var i = 0; i < lowercaseLetters.length; i++){
-      passKeyCombos.push(lowercaseLetters[i]);
-      }
-      for (var i = 0; i < numsArray.length; i++){
-        passKeyCombos.push(numsArray[i]);
-        }
-        for (var i = 0; i < specialArray.length; i++){
-          passKeyCombos.push(specialArray[i]);
-          }
-}
-// lowercase and uppercase not confirmed,numbers and special characters concat
-else if (includeUpperCase == false && includeLowerCase == false && includeNums == true && includeSpecialChar == true){
-  for (var i = 0; i < numsArray.length; i++){
-    passKeyCombos.push(numsArray[i]);
-    }
-    for (var i = 0; i < specialArray.length; i++){
-      passKeyCombos.push(specialArray[i]);
-      }
-}
-// if all or none were confirmed.
-else{
-    for (var i = 0; i < uppercaseLetters.length; i++){
-      passKeyCombos.push(uppercaseLetters[i]);
-      }
-      for (var i = 0; i < lowercaseLetters.length; i++){
-        passKeyCombos.push(lowercaseLetters[i]);
-        }
-        for (var i = 0; i < numsArray.length; i++){
-          passKeyCombos.push(numsArray[i]);
-          }
-          for (var i = 0; i < specialArray.length; i++){
-            passKeyCombos.push(specialArray[i]);
-            }
+if (includeUpperCase){
+  passKeyCombos = passKeyCombos.concat(uppercaseLetters);
 }
 
+if(includeLowerCase){
+  passKeyCombos = passKeyCombos.concat(lowercaseLetters);
+}
 
+if(includeNums){
+  passKeyCombos = passKeyCombos.concat(numsArray);
+}
+
+if(includeSpecialChar){
+  passKeyCombos = passKeyCombos.concat(specialArray);
+}
+
+console.log(passKeyCombos);
 //translates the ASCI codes and fills an array with the equivalent values
 for (var i = 0; i < lengthOfKey; i++){
 asciiCode = passKeyCombos[Math.floor(Math.random() * passKeyCombos.length)]
